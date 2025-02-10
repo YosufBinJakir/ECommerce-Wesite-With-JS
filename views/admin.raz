@@ -1,0 +1,22 @@
+@section nav {
+    Html.partial("_nav", {authenticated:true})
+}
+<div>
+    <h1>Admin Panel</h1>
+    <div class="box-container">
+        <a class="big-box" href="/categories">
+        
+        
+        <img src="/images/category-2-svgrepo-com.svg" style="width:60px" />
+        <span style="font-size:1.1rem;font-weight:500">Categories</span>
+        </a>
+        <a class="big-box" href="/products">
+             <img src="/images/products-svgrepo-com.svg" style="width:60px" />
+            <span style="font-size:1.1rem;font-weight:500">Products</span>
+        </a>
+        <a class="big-box" href="/admin-order">
+          <img src="/images/buy-cart-online-svgrepo-com.svg" style="width:60px" />
+          <span style="font-size:1.1rem;font-weight:500">Orders</span>
+        </a>
+    </div>
+</div>

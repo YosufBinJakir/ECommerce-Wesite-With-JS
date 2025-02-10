@@ -1,0 +1,49 @@
+{
+  "name": "raz",
+  "description": "Razor like HTML template engine for NodeJS Express library based on ASP.NET MVC Razor syntax. Template your views by mixing HTML markup with JavaScript server-side code!",
+  "version": "1.5.0",
+  "author": {
+    "name": "Sergey F.",
+    "email": "develax@gmail.com",
+    "url": "https://www.npmjs.com/package/raz"
+  },
+  "engines": {
+    "node": ">=10.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DevelAx/RazorExpress"
+  },
+  "scripts": {
+    "build-js": "browserify ./core/bundle-js.js > raz.js",
+    "buildmon": "nodemon --watch core --exec \"npm run build-js\"",
+    "test": "mocha ./test/**/*.test.js",
+    "testmon": "nodemon --exec \"npm test\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "browserify": "^16.2.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "chai-string": "^1.5.0",
+    "express": "^4.16.4",
+    "jquery": "^3.3.1",
+    "jsdom": "^13.0.0",
+    "mocha": "^5.2.0",
+    "proxyquire": "^2.1.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "Razor",
+    "View",
+    "Template",
+    "Engine",
+    "NodeJS",
+    "Express",
+    "HTML",
+    "Parser"
+  ],
+  "bugs": {
+    "url": "https://github.com/DevelAx/RazorExpress/issues"
+  }
+}

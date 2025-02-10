@@ -1,0 +1,53 @@
+@section nav {
+    Html.partial("_nav", Model.authenticated)
+}
+<div class="form-container" >
+    <h1>Login</h1>
+     @if(Model.msg != ""){
+        <div style="color:red;">@Model.msg</div>
+    }
+    <form  method="post" action="/save-category" >
+        <div class="fld">
+            <label>Category name</label>
+            <input type="text" name="cname" class="ctrl" required />
+        </div>
+        <div class="between">
+            <h3>Subcategoryies</h3>
+            <button type="button" class="add"><i class="bi bi-plus"></i></button>
+        </div>
+        <div id="subs">
+            <div class="fld1">
+                <label>Subcategory name</label>
+                <input type="text" name="sname" class="ctrl" required/>
+                <button type="button" class="del"><i class="bi bi-trash"></i></button>
+            </div>
+        </div>
+        
+         <div class="fld">
+            <label></label>
+            <label><button type="submit" class="btn primary" >Login</button></label>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <script src="/scripts/jquery.js"></script>
+    <script>
+        $(()=>{
+          $('.add').click(()=>{
+            console.log('ok')
+            $('#subs').append($(`<div class="fld1">
+                <label>Subcategory name</label>
+                <input type="text" name="sname" class="ctrl" required/>
+                <button type="button" class="del" ><i class="bi bi-trash"></i></button>
+            </div>`));
+          });
+          $(document).on("click", "button.del", function(){
+                //console.log($(this).parent());
+                $(this).parent().remove();
+          });
+        
+
+        });
+    </script>
+
+}

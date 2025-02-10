@@ -1,0 +1,80 @@
+@{
+     Model.title="Create product";
+     const categories = Model.categories;
+}
+@section nav {
+    Html.partial("_nav", {authenticated:true})
+}
+<div class="form-container">
+    <h1>Add new product</h1>
+    <form enctype="multipart/form-data" method="post" action="/save-product">
+        <div class="fld">
+            <label>Name</label>
+            <input type="text" name="name" class="ctrl" />
+        </div>
+        <div class="fld">
+            <label>Price</label>
+            <input type="text" name="price" class="ctrl" />
+        </div>
+         <div class="fld">
+            <label>Description</label>
+            <input type="text" name="description" class="ctrl" />
+        </div>
+        <div class="fld">
+            <label>Picture</label>
+            <input type="file" name="picture" class="ctrl" />
+        </div>
+        <div class="fld">
+            <label>Category</label>
+            <select name="categoryid" id="categoryid" class="ctrl-select">
+                <option value="" selected>Select one</option>
+                @for(var i=0;i<categories.length;i++){
+                    <option value="@categories[i]._id">@categories[i].categoryname</option>
+                }
+            </select>
+        </div>
+        <div class="fld">
+            <label>SubCategory</label>
+            <select name="subcategoryid" id="subcategoryid" class="ctrl-select">
+                <option value="" selected>Select one</option>
+                
+            </select>
+        </div>
+        <div class="fld">
+            <label></label>
+            <label><input type="checkbox" name="featured"  /> Featured</label>
+        </div>
+         <div class="fld">
+            <label></label>
+            <label><button type="submit" >Save</button></label>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <script src="/scripts/jquery.js"></script>
+    <script>
+        $(()=>{
+           $("#categoryid").change(function(){
+                let cid = $(this).val();
+                $.ajax({
+                    method: 'get',
+                    url: 'get-sub-categories?cid='+cid,
+                    dataType:'json',
+                    success: r=>{
+                       if(r.length){
+                        console.log(r)
+                        $("#subcategoryid").html("");
+                        for(var i=0;i<r.length;i++){
+                            $("#subcategoryid").append(`<option value='${r[i].id}'>${r[i].subcategoryname}</option>`)
+                        }
+                         $("#subcategoryid").append(`<option value="" selected>Select one</option>`);
+                       }
+                    }
+                })
+            });
+
+
+        });
+    </script>
+
+}

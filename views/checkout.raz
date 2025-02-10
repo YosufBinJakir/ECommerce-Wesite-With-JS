@@ -1,0 +1,39 @@
+@{
+    Model.title = "Home";
+   
+   
+}
+@section nav {
+    Html.partial("_nav", {authenticated:true})
+}
+<div class="form-container">
+    <h1>Add new product</h1>
+    <form  method="post" action="/create-order">
+    <div class="fld">
+            <label>Delivery method</label>
+            <span>COD (Cah on delivery)</span>
+        </div>
+        <div class="fld">
+            <label>Delivery address</label>
+            <textarea type="text" name="add" class="ctrl" required></textarea>
+        </div>
+        <div class="fld">
+            <label>Order items</label>
+            <span>@Model.count</span>
+        </div>
+         <div class="fld">
+            <label>Amount</label>
+           <span>@Model.amount</span>
+        </div>
+         <div class="fld">
+            <label>+Ship Charge</label>
+           <span>In Dhaka: 50 BDT, Outside Dhaka: 150 BDT</span>
+        </div>
+        
+       
+         <div class="fld">
+            <label></label>
+            <label><button type="submit" class="medium-btn" >Proceed</button></label>
+        </div>
+    </form>
+</div>

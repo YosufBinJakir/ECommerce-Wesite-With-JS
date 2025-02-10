@@ -1,0 +1,24 @@
+@section nav {
+    Html.partial("_nav", Model.authticated)
+}
+<div class="form-container" style="width:500px">
+    <h1>Register</h1>
+    @if(Model.msg != ""){
+        <div style="color:red;">@Model.msg</div>
+    }
+    <form  method="post" action="/register" >
+        <div class="fld">
+            <label>Username</label>
+            <input type="text" name="uname" class="ctrl" required />
+        </div>
+        <div class="fld">
+            <label>Password</label>
+            <input type="Password" name="pass" class="ctrl" required/>
+        </div>
+        
+         <div class="fld">
+            <label></label>
+            <label><button type="submit" class="btn primary" >Register</button></label>
+        </div>
+    </form>
+</div>

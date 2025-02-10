@@ -1,0 +1,17 @@
+ <nav class="nav">
+      <span class="brand"><h1><a href="/" style="text-decoration:none">OpTima Digital Library</a></h1></span>
+      <ul>
+      <li><a href="/"><h2>About</h2></a></li>
+        <li><a href="/"><h2>Home</h2></a></li>
+        <li><a href="/cart"><h2><i class="bi bi-cart"></i>Cart</h2></a></li>
+        @if(Model.authenticated){
+            <li><a href="/logout"><h2>Logout</h2></a></li>
+        }
+        else
+        {
+            <li><a href="/register"><h2>Register</h2></a></li> 
+            <li><a href="/login"><h2>Login</h2></a></li> 
+        }
+      </ul>
+</nav>
+

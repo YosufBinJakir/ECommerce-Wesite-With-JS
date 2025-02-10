@@ -1,0 +1,30 @@
+@{
+    Model.title="Category management";
+    const categories = Model.categories;
+}
+@section nav {
+    Html.partial("_nav", {authenticated:true})
+}
+<div>
+<h1 style="width:97.5%; margin: 5px auto">Categories</h1>
+<div class="right">
+    <a href="/create-category"><i class="bi bi-plus"></i></a>
+</div>
+<table class="tbl">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Subcategories</th>
+        </tr>
+    </thead>
+        <tbody>
+        @for(var i=0;i<categories.length;i++){
+            <tr>
+                <td>@categories[i].categoryname</td>
+                 <td>@categories[i].subs</td>
+            </tr>
+        }
+        </tbody>
+    
+</table>
+</div>

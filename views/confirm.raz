@@ -1,0 +1,14 @@
+@{
+    Model.title = "Order Confirm";
+   
+   
+}
+@section nav {
+    Html.partial("_nav", {authenticated:true})
+}
+<div style="width:97.5%;margin:15px auto">
+    <h1>Thank you, for Ordering</h1>
+    <p>
+        We will deliver your products soon
+    </p>
+</div>

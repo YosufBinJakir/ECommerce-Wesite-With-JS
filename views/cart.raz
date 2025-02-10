@@ -1,0 +1,94 @@
+@{
+    Model.title = "Home";
+    const carts = Model.carts;
+   
+}
+@section nav {
+    Html.partial("_nav", {authenticated:Model.authenticated})
+}
+<div class="order-summary">
+<div>
+<h1 style="width:97.5%; margin: 5px auto" class ="order">ORDER SUMMARY</h1>
+</div>
+
+<table class="tbl">
+    <thead>
+        <tr>
+            <th>Product</th>
+            
+            <th>Unit price</th>
+            <th>Quantity</th>
+            <th>Sub total</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+        <tbody>
+        @for(var i=0;i<carts.length;i++){
+            <tr>
+                <td>@carts[i].productname</td>
+                
+                 <td>@carts[i].price</td>
+                 <td><input type="number" data-cart="@carts[i]._id" data-user="@carts[i].userid" data-product="@carts[i].productid" style="width:60px; height:30px" value="@carts[i].quantity" class="qty" /></td>
+                 <td>@(carts[i].price*carts[i].quantity)</td>
+                 <td><button data-cart="@carts[i]._id" class="small-btn" type="button"><a><i class="bi bi-trash"></i></a></button></td>
+            </tr>
+        }
+       
+        </tbody>
+    
+</table>
+<div style="display:flex;justify-content:space-between;width:97.5%;margin:10px auto;">
+    
+                <a href="/" class="zoom" style="text-decoration:none"><h2>Contibue shopping</h2></a>
+           
+                <a href="/checkout" class="medium-btn"  style="border:0;text-align:right;"><strong>Check out</strong></a>
+            
+        
+</div>
+</div>
+@section Scripts {
+    <link rel="stylesheet" href="/scripts/snackbar/js-snackbar.min.css" />
+    <script src="/scripts/jquery.js"></script>
+    <script src="/scripts/snackbar/js-snackbar.js"></script>
+    <script>
+        $(()=>{
+            $(".qty").change(function(){
+                let uid=$(this).data('user');
+                let pid=$(this).data('product');
+                let cid=$(this).data('cart');
+                let q=$(this).val();
+                let p= $(this).parent().prev().text();
+                console.log(q, p, Number(q)*Number(p));
+                console.log($(this).data('user'), pid)
+                $(this).parent().next().text(Number(q)*Number(p));
+               $.ajax({
+                method:'get',
+                url: `/update-cart?p=${pid}&q=${q}&u=${uid}&c=${cid}`,
+                dataType: 'json',
+                success: r=>{
+                    SnackBar({
+                            message: r.msg,
+                            position: "bm"
+                        })
+                }
+               })
+            });
+            $('.small-btn').click(function (){
+                let self = $(this);
+                let cid=$(this).data('cart');
+                $.ajax({
+                    method:'get',
+                    url:`/del-cart-item?c=${cid}`,
+                    dataType:'json',
+                    success: r=>{
+                        console.log(r);
+                        if(r.success == true){
+                            self.closest('tr').remove();
+                        }
+                    }
+                })
+            });
+        });
+    </script>
+
+}

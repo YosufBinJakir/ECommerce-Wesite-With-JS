@@ -1,0 +1,34 @@
+@{
+    Model.title = "Orders";
+    var orders = Model.orders;
+}
+@section nav {
+    Html.partial("_nav", {authenticated:true})
+}
+<div>
+<h1 style="width:97.5%; margin: 5px auto">Orders</h1>
+
+<table class="tbl">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Order Date</th>
+            <th>Delivery address</th>
+            <th>Order Value</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+        <tbody>
+        @for(var i=0;i<orders.length;i++){
+            <tr>
+                <td>@orders[i].userid</td>
+                 <td>@orders[i].date</td>
+                 <td>@orders[i].address</td>
+                 <td>@orders[i].amount</td>
+                 <td>@orders[i].status</td>
+            </tr>
+        }
+        </tbody>
+    
+</table>
+</div>
